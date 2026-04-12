@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marine Engineering Watch Part (III) - Prep</title>
+    <link rel="icon" type="image/png" href="photo00022.png" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header class="main-header">
+        <div class="logo-area">
+          <img src="download.png" alt="Logo" class="site-logo" />
+        </div>
+        <div class="title-area">
+          <h1>Marine Engineering Watch Part (I)</h1>
+          <p>OEW Batch 48 - Exam Preparation</p>
+          <p>Function Three</p>
+        </div>
+      </header>
+      <section>
+        <h2>Section I: Multiple Choice</h2>
+        <div id="mcq-container"></div>
+      </section>
+
+      <section>
+        <h2>Section II: Fill in the Blank</h2>
+        <div id="fill-container"></div>
+      </section>
+
+      <section>
+        <h2>Section III: Short Question</h2>
+        <div id="short-container"></div>
+      </section>
+
+      <div class="action-area">
+        <button class="submit-btn" onclick="calculateResult()">
+          ရမှတ်စစ်ဆေးမည် <i class="fas fa-anchor"></i>
+        </button>
+      </div>
+
+      <div id="result-sheet" style="display: none">
+        <h3>Result Summary</h3>
+        <p id="p1-res"></p>
+        <p id="p2-res"></p>
+        <p id="p3-res"></p>
+        <hr />
+        <h2 id="final-percent"></h2>
+        <h1 id="final-status"></h1>
+        <button class="nav-btn try-again-btn" onclick="resetQuiz()">
+          Try Again
+        </button>
+      </div>
+    </div>
+
+    <script>
+      // ၁။ MCQ Data ပြင်ဆင်ခြင်း (Options ကို Array ပြောင်းလိုက်တာက ပိုအဆင်ပြေပါတယ်)
+      const mcqData = [
+        {
+          q: "The proper wernch which practically eliminates of slipping when tightening a nuts or bolts is:",
+          options: [
+            "open-end wrench",
+            "box-end wrench",
+            "creseent wrench",
+            "spanner wrench",
+          ],
+          correct: 1, // Open-end wrench (Index 0)
+        },
+        {
+          q: "Why is covering applied to welding electrode, rather than using a bare electrode?",
+          options: [
+            "protect the welder from electric shock",
+            "prevent arc blow",
+            "sheild the arc during the welding process to prevent oxidation",
+            "stablize the electron emision rate and produce uniform temperatures in the heat affected zone",
+          ],
+          correct: 2, // sheild the arc during the welding process to prevent oxidation
+        },
+        {
+          q: "To tighten the bolts of a crankpin bearing to exact temsion as per manufacturer’s instruction, you should use _____a/an:",
+          options: [
+            "dial wrench",
+            "offset box end",
+            "torque wrench",
+            "hook spanner",
+          ],
+          correct: 2, // torque wrench
+        },
+        {
+          q: "If a steel is heated slightly above the upper critical temperature and allow to cool freely in still air at room temperature is called _____ .",
+          options: ["Annealing", "Normalizing", "hardening", "Tempering"],
+          correct: 1, // Normalizing
+        },
+        {
+          q: "Light size pipe can be easily rotated with a:",
+          options: [
+            "monkey wrench",
+            "strong back",
+            "chain pipe wrench",
+            "pipe turner",
+          ],
+          correct: 3,
+        },
+        {
+          q: "Properties of Metals are:",
+          options: [
+            "Plasticity",
+            "Hardness",
+            "Tensile strength",
+            "Brittleness",
+            "All of the above",
+          ],
+          correct: 4,
+        },
+        {
+          q: "Pinning is often caused by:",
+          options: [
+            "dropping the file",
+            "chalking the file",
+            "cleaning the file",
+            "bearing too hard on the file",
+          ],
+          correct: 2,
+        },
+        {
+          q: "A new file should be broken in carefully by filling a piece of:",
+          options: [
+            "monel stock using heavy pressure",
+            "bronze stock using light pressure",
+            "stainless steel stock using light pressure",
+            "brass stock using heavy pressure",
+          ],
+          correct: 0,
+        },
+        {
+          q: "Protective equipment to be used while carrying out oxy-acetylene welding should always include:",
+          options: [
+            "goggles",
+            "ear plugs",
+            "non_sparking tools",
+            "steel toe safety shoes",
+          ],
+          correct: 0,
+        },
+        {
+          q: "A gas mask can only be used when there is:",
+          options: [
+            "at least 16% oxygen present",
+            "less than 16% oxygen present   ",
+            "less than 10% oxygen present",
+          ],
+          correct: 0,
+        },
+        {
+          q: "The hard soldering is called _____.",
+          options: [
+            "gas-welding",
+            "arc-welding",
+            "brazing ",
+            "thermal cutting",
+          ],
+          correct: 2,
+        },
+        {
+          q: "Brass is an alloy of :",
+          options: [
+            "Copper and Tin",
+            "Copper and lead",
+            "Copper and Zinc",
+            "Copper and aluminum",
+          ],
+          correct: 2,
+        },
+        {
+          q: "Which of the following fire extinguishers would be effective on an oil fire but dengerous to use on an electrical fire?",
+          options: ["Foam", "Co2", "Dry chemical"],
+          correct: 0,
+        },
+        {
+          q: "The job of finding the clearance in a bearing is known as _____.",
+          options: ["taking leads", "checking bearing", "rolling leads"],
+          correct: 0,
+        },
+        {
+          q: "Globules or particles of metal scattered on (or) around at the deposited metal is called _____.",
+          options: ["porosity", "overlap", "spatter", "undercut"],
+          correct: 2,
+        },
+        {
+          q: "Which of the following listed pressure is the maximum acetylene gas pressure that can be safely used in gas welding?",
+          options: ["10 psi", "15 psi", "25 psi", "35 psi"],
+          correct: 1,
+        },
+        {
+          q: "In general file are divided into two classes called _____.",
+          options: [
+            "single cut and double cut",
+            "fine and coarse",
+            "rough and smooth",
+          ],
+          correct: 1,
+        },
+        {
+          q: "The hand tool used for cutting threads on round stoe is the _____.",
+          options: ["stock and die", "die crenel", "Rankine stock  ."],
+          correct: 0,
+        },
+        {
+          q: "The ability of a material to undergo permanent change in shape without rupture is:",
+          options: ["Brittleness", "Hardness", "Ductility", "Toughness"],
+          correct: 3,
+        },
+        {
+          q: "Steel is heated up to it upper critical range about 850-950 degree Celsius then rapidly cooled by quenching in oil or water is:",
+          options: ["annealing", "normalizing", "hardening", "tempering"],
+          correct: 2,
+        },
+        // ... ကျန်တဲ့ မေးခွန်းတွေလည်း ဒီပုံစံအတိုင်း ထည့်လို့ရပါတယ် ...
+      ];
+
+      const fillData = [
+        {
+          q: "The general purpose of a heat exchangeer is to _____.",
+          correct: "heat or cool one fluid by means of another fluid.",
+        },
+        {
+          q: "The component of a refrigerating system in which the refrigerant vaporizes and absorbs heat ______.",
+          correct: "is known as the evaporator",
+        },
+        {
+          q: "______ is a device which is widely used as a pyrometer on board ship for continuous measurement of temperature for various machineries like main engine, auxiliary engine, gas turbine.",
+          correct: "Thermocouple",
+        },
+        {
+          q: "The opreation of turning a grinding a wheel is known as _____.",
+          correct: "Dressing",
+        },
+        {
+          q: "Water hammer is caused by______.",
+          correct: "Water in steam line",
+        },
+        {
+          q: "Cylinders shell be used and stored in an ______ position.",
+          correct: "Upright",
+        },
+        {
+          q: "Most butt joints designed for ______ welding, have the bevelled plate positioned on the top.",
+          correct: "Horizontal",
+        },
+        {
+          q: "In an air condition system moisture is removed from the air by _____.",
+          correct: "De-Humidifier",
+        },
+        {
+          q: "Salt contain in distilled water was measured by _____.",
+          correct: "Salinometer",
+        },
+        {
+          q: "A centrifugal brake is provided to avoid the lifeboat '_______'while being lowered.",
+          correct: "cooling by evaporation",
+        },
+        {
+          q: "Large bumping clearance retards the _____ on the suction stroke and thus less air is drawn inside for compression.",
+          correct: "Runnungaway",
+        },
+        {
+          q: "Before installing a new flang gasket be sure that the _____",
+          correct: "Flanged faces are throroughly cleaned",
+        },
+        {
+          q: "The boiler feed water in the feed water heater is heated by_____.",
+          correct: "auxillary exhaust steam",
+        },
+        {
+          q: "The propose of surface blowing si ______.",
+          correct: "to remove oil and scum from the surface of water.",
+        },
+        {
+          q: "Acetylene is supplied in cylinders under a pressure of about _____ Bar but welding is carried out with torch gas pressures typically up to 2   Bar.",
+          correct: "15bar",
+        },
+        {
+          q: "Never use a cutting torch where ______ will be hazards",
+          correct: "sparks",
+        },
+        {
+          q: "In the evaporator______  from the room and boils off into vapors resulting in temperature drop of the room.",
+          correct: "the refrigerant takes up heat",
+        },
+        {
+          q: "Function of diffuser in turbocharger is _____.",
+          correct:
+            "to direct the air smoothly into the volute casing, convert kinetic energy to pressure energy of inlet air",
+        },
+        {
+          q: "The best conductor of heat in a marine boiler is _____.",
+          correct: "steel",
+        },
+        {
+          q: "The temperature of the arc between two conductors is approximately _____.",
+          correct: "3500 deg C to 4000 deg C",
+        },
+      ];
+
+      const shortData = [
+        {
+          q: "What are the 5 basic & welding joints?",
+          correct: "Edge",
+        },
+        {
+          q: "What are the priniciple parts of the lathe?",
+          correct: "tailstock",
+        },
+        {
+          q: "Explain boiler surface blow and bottom blow down procedure?.",
+          correct: "open",
+        },
+        {
+          q: "What are the 5 major safety concerns while welding?",
+          correct: "hazards",
+        },
+      ];
+
+      // ၂။ Render Function (ပြင်ဆင်ပြီးသား)
+      function init() {
+        let h1 = "";
+        mcqData.forEach((d, i) => {
+          h1 += `<div class="card"><p><b>Q${i + 1}: ${d.q}</b></p>`;
+          // ဒီနေရာမှာ d.options က Array ဖြစ်နေဖို့ လိုပါတယ်
+          d.options.forEach((opt, idx) => {
+            h1 += `<label><input type="radio" name="mcq${i}" value="${idx}"> ${opt}</label>`;
+          });
+          h1 += `</div>`;
+        });
+        document.getElementById("mcq-container").innerHTML = h1;
+
+        let h2 = "";
+        fillData.forEach((d, i) => {
+          h2 += `<div class="card"><p><b>Q${i + 1}: ${d.q}</b></p>
+                    <input type="text" id="fill${i}" placeholder="Type answer here..."></div>`;
+        });
+        document.getElementById("fill-container").innerHTML = h2;
+
+        let h3 = "";
+        shortData.forEach((d, i) => {
+          h3 += `<div class="card"><p><b>Q${i + 1}: ${d.q}</b></p>
+                    <textarea id="short${i}" rows="3" placeholder="Explain in your own words..."></textarea></div>`;
+        });
+        document.getElementById("short-container").innerHTML = h3;
+      }
+
+      // ၃။ အမှတ်တွက်ခြင်း Logic
+      function calculateResult() {
+        let s1 = 0,
+          s2 = 0,
+          s3 = 0;
+
+        mcqData.forEach((d, i) => {
+          const sel = document.querySelector(`input[name="mcq${i}"]:checked`);
+          // Number အဖြစ် ပြောင်းစစ်ဖို့ လိုပါတယ်
+          if (sel && parseInt(sel.value) === d.correct) s1++;
+        });
+
+        fillData.forEach((d, i) => {
+          const inputField = document.getElementById(`fill${i}`);
+          const userAns = inputField.value.trim().toLowerCase();
+          inputField.classList.remove("correct-choice", "wrong-choice");
+          if (userAns !== "" && userAns === d.correct.toLowerCase()) {
+            inputField.classList.add("correct-choice");
+            s2++;
+          } else {
+            inputField.classList.add("wrong-choice");
+          }
+        });
+
+        shortData.forEach((d, i) => {
+          const inputField = document.getElementById(`short${i}`);
+          const userAns = inputField.value.trim().toLowerCase();
+          const key = d.correct.toLowerCase();
+          inputField.classList.remove("correct-choice", "wrong-choice");
+          if (userAns !== "" && userAns.includes(key)) {
+            inputField.classList.add("correct-choice");
+            s3++;
+          } else {
+            inputField.classList.add("wrong-choice");
+          }
+        });
+
+        document.getElementById("p1-res").innerText =
+          `MCQ: ${s1} / ${mcqData.length}`;
+        document.getElementById("p2-res").innerText =
+          `Fill-in: ${s2} / ${fillData.length}`;
+        document.getElementById("p3-res").innerText =
+          `Short Q: ${s3} / ${shortData.length}`;
+
+        const total = s1 + s2 + s3;
+        const max = mcqData.length + fillData.length + shortData.length;
+        const percent = Math.round((total / max) * 100);
+
+        document.getElementById("final-percent").innerText =
+          `Score: ${percent}%`;
+        document.getElementById("final-status").innerText =
+          percent >= 50 ? "⚓ PASSED ⚓" : "FAILED 💔";
+        document.getElementById("result-sheet").style.display = "block";
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth",
+        });
+      }
+      function resetQuiz() {
+        // ၁။ စာမျက်နှာကို အပေါ်ဆုံးရောက်အောင် အရင်ပို့မယ်
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        // ၂။ ပြီးရင် စာမျက်နှာကို အသစ်ပြန်ဖြစ်အောင် (Reload) လုပ်မယ်
+        // ခဏစောင့်ပြီးမှ Reload လုပ်တာက ပိုပြီး Smooth ဖြစ်ပါတယ်
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+      }
+
+      init();
+    </script>
+  </body>
+</html>

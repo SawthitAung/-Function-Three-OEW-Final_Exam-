@@ -1,0 +1,483 @@
+/* --- ၁။ အရောင်နဲ့ အခြေခံ Settings --- */
+:root {
+  --marine-blue: #001d3d; /* ပင်လယ်နက်ပိုင်းအရောင် */
+  --neon-cyan: #00d4ff; /* သင်္ဘော Dashboard က မီးရောင် */
+  --glass-white: rgba(255, 255, 255, 0.08);
+  --text-pure: #ffffff;
+  --border-light: rgba(255, 255, 255, 0.15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* ၂။ သင်္ဘောနောက်ခံပုံ (Marine Background) */
+  /* ပုံအပေါ်မှာ စာဖတ်ရလွယ်အောင် အပြာရင့်ရောင် လွှာလေး အုပ်ထားပါတယ် */
+  background:
+    linear-gradient(rgba(0, 29, 61, 0.8), rgba(0, 29, 61, 0.8)),
+    url("imge.webp");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+
+  color: var(--text-pure);
+  font-family: "Segoe UI", Roboto, sans-serif;
+  padding: 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* --- ၃။ Header (Logo & Title ဘေးချင်းယှဉ်) --- */
+.main-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+}
+
+.site-logo {
+  width: 80px;
+  height: 80px;
+  background: var(--glass-white);
+  border: 1.5px solid var(--neon-cyan);
+  border-radius: 18px; /* App Icon လို ဝိုင်းဝိုင်းလေး */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+}
+
+.site-logo img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.title-area h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: linear-gradient(to right, #00d4ff, #0055ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- ၄။ Quiz Card (မှန်ကြည် Box လေးများ) --- */
+.card {
+  background: var(--glass-white);
+  border: 1px solid var(--border-light);
+  backdrop-filter: blur(15px);
+  border-radius: 25px;
+  padding: 30px;
+  margin-bottom: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
+}
+/* မေးခွန်းစာသားကို ကြီးစေဖို့ */
+/* --- စာရိုက်ဖြေရတဲ့ Input Box ကို ပြင်တာပါ --- */
+input[type="text"],
+textarea {
+  width: 100%;
+  background: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ); /* နည်းနည်း ပိုလင်းအောင် background ကို မြှင့်လိုက်တယ် */
+  border: 1.5px solid rgba(0, 212, 255, 0.4);
+  border-radius: 15px;
+  padding: 22px; /* Box ကို ပိုကျယ်လာအောင် လုပ်တာပါ */
+  color: #ffffff; /* ရိုက်လိုက်တဲ့ စာသားအရောင် */
+
+  font-size: 1.3rem; /* စာလုံးကို တော်တော်လေး ကြီးလိုက်ပါပြီ */
+  font-weight: 500;
+  outline: none;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+
+/* "Type answer here..." ဆိုတဲ့ စာသားလေးကို ကြီးအောင်ပြင်တာပါ */
+input[type="text"]::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5); /* စာသားဖျော့ဖျော့လေး */
+  font-size: 1rem; /* Placeholder စာလုံးကို ကြီးလိုက်တာပါ */
+}
+
+/* Box ထဲမှာ စာရိုက်နေတဲ့အချိန် (Focus ဖြစ်ချိန်) မီးလင်းလာအောင် */
+input[type="text"]:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #00d4ff;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+}
+/* --- ၅။ Result Area  --- */
+.final-score-area {
+  text-align: center;
+  padding: 50px 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 45px;
+  border: 1.5px solid rgba(0, 212, 255, 0.2);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+  margin-bottom: 35px;
+  backdrop-filter: blur(25px);
+}
+
+#final-percent {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+}
+
+#final-status {
+  font-size: 2rem;
+  letter-spacing: 6px;
+  margin-top: 10px;
+  opacity: 0.9;
+}
+
+/* --- ၆။ Try Again Button (Sexy Pill Button) --- */
+.nav-btn {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, #00d4ff, #0055ff);
+  border: none;
+  border-radius: 100px; /* လုံးဝဝိုင်းစက်နေတဲ့ ပုံစံ */
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  box-shadow: 0 10px 30px rgba(0, 85, 255, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.nav-btn:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 212, 255, 0.6);
+}
+
+.nav-btn:active {
+  transform: translateY(2px) scale(0.96);
+}
+
+/* --- ၇။ Responsive (ဖုန်းအတွက်) --- */
+@media (max-width: 600px) {
+  .main-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .title-area h1 {
+    font-size: 1.6rem;
+  }
+  .final-score-area {
+    border-radius: 35px;
+    padding: 35px 15px;
+  }
+  .nav-btn {
+    width: 90%;
+    font-size: 1.1rem;
+  }
+}
+
+/* --- ၅။ Choices & Inputs --- */
+label {
+  display: block;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px 20px;
+  margin: 10px 0;
+  border-radius: 15px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: 0.2s;
+}
+
+label:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.3);
+}
+
+input[type="radio"] {
+  accent-color: var(--nebula-blue);
+  margin-right: 10px;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 15px;
+  color: white;
+  outline: none;
+  margin-top: 10px;
+}
+
+/* --- ၆။ Submit Button --- */
+.submit-btn {
+  display: block;
+  width: 100%;
+  max-width: 300px;
+  margin: 40px auto;
+  padding: 18px;
+  background: linear-gradient(135deg, #00d4ff, #0055ff);
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 85, 255, 0.4);
+  transition: 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.submit-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(0, 212, 255, 0.6);
+}
+
+/* --- ၇။ Sexy Result Sheet & Try Again Button --- */
+#result-sheet {
+  max-width: 650px;
+  margin: 40px auto;
+  padding: 45px 25px;
+  border-radius: 40px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(25px);
+  border: 1.5px solid rgba(0, 212, 255, 0.2);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  animation: fadeIn 0.6s ease-out;
+}
+
+#try-again-btn {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  margin: 35px auto 0;
+  padding: 20px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #ffffff;
+  background: linear-gradient(135deg, #00d4ff, #0055ff);
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 85, 255, 0.4);
+  transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#try-again-btn:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 212, 255, 0.6);
+}
+/* --- ၁။ Result Area တစ်ခုလုံးကို ဝိုင်းဝိုင်းလေးနဲ့ Sexy ကျအောင် --- */
+.final-score-area {
+  text-align: center;
+  padding: 40px 20px;
+  background: rgba(255, 255, 255, 0.05); /* မှန်ကြည် Background */
+  backdrop-filter: blur(20px);
+  border-radius: 40px; /* Sexy Curves */
+  border: 1.5px solid rgba(0, 212, 255, 0.2);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+  margin-bottom: 30px;
+  animation: slideUp 0.6s ease-out;
+}
+
+/* Total: 0% စာသား */
+#final-percent {
+  font-size: 3rem; /* အမှတ်ကို အကြီးကြီးပြမယ် */
+  font-weight: 900;
+  background: linear-gradient(to bottom, #ffffff, #00d4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+
+/* STATUS (PASSED/FAILED) စာသား */
+#final-status {
+  font-size: 2.2rem;
+  letter-spacing: 5px;
+  font-weight: 800;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+}
+
+/* --- ၂။ Try Again ခလုတ် (Big & Neon Version) --- */
+.nav-btn {
+  display: block;
+  width: 100%;
+  max-width: 320px; /* Laptop မှာ အရမ်းကြီးမသွားအောင် */
+  margin: 20px auto;
+
+  /* ခလုတ်ကို ဖောင်းဖောင်းကြီးနဲ့ Sexy ကျစေမယ့် padding */
+  padding: 20px 40px;
+  font-size: 1.3rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+
+  color: #ffffff;
+  /* Marine Blue Gradient */
+  background: linear-gradient(135deg, #00d4ff, #0055ff);
+
+  border: none;
+  border-radius: 100px; /* လုံးဝဝိုင်းစက်နေတဲ့ ဆေးတောင့်ပုံစံ */
+
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0, 85, 255, 0.4);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* ဖုန်းမှာ နှိပ်ရတာ ပိုကောင်းအောင် */
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Mouse တင်လိုက်တဲ့အခါ (Hover) */
+.nav-btn:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(0, 212, 255, 0.6);
+  letter-spacing: 5px; /* စာသားလေး ကျယ်သွားရင် ပိုလန်းတယ် */
+}
+
+/* လက်နဲ့နှိပ်လိုက်တဲ့အခါ (Active) */
+.nav-btn:active {
+  transform: translateY(2px) scale(0.96);
+  box-shadow: 0 5px 15px rgba(0, 85, 255, 0.4);
+}
+
+/* --- 📱 ဖုန်းအတွက် Responsive ပြင်ဆင်ချက် --- */
+@media (max-width: 480px) {
+  .final-score-area {
+    padding: 30px 15px;
+    border-radius: 30px;
+  }
+
+  #final-percent {
+    font-size: 2.2rem;
+  }
+
+  #final-status {
+    font-size: 1.8rem;
+  }
+
+  .nav-btn {
+    width: 90%;
+    padding: 18px 30px;
+    font-size: 1.1rem;
+  }
+}
+
+/* ပေါ်လာတဲ့အခါ Animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* --- ၈။ Responsive (ဖုန်းအတွက်) --- */
+@media (max-width: 600px) {
+  .main-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .title-area h1 {
+    font-size: 1.6rem;
+  }
+  .card {
+    padding: 20px;
+    border-radius: 20px;
+  }
+  #result-sheet {
+    width: 95%;
+    padding: 30px 15px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* --- Try Again Button Styling --- */
+.try-again-btn {
+  display: block;
+  width: 100%;
+  max-width: 280px; /* Laptop မှာ အရမ်းကြီးမသွားအောင် */
+  margin: 30px auto 0; /* အပေါ်က စာသားတွေနဲ့ ခွာထားမယ် */
+
+  padding: 18px 30px; /* ခလုတ်ကို ဖောင်းဖောင်းကြီးနဲ့ နှိပ်ရတာ ကောင်းအောင် */
+  font-size: 1.2rem; /* စာလုံးကို ကြီးကြီးထားမယ် */
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  color: #ffffff;
+  /* Marine Blue Gradient */
+  background: linear-gradient(135deg, #00d4ff, #0055ff);
+
+  border: none;
+  border-radius: 50px; /* Sexy ဝိုင်းဝိုင်းလေး */
+  cursor: pointer;
+  box-shadow: 0 10px 20px rgba(0, 85, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Mouse တင်လိုက်ရင် ကြွလာအောင် */
+.try-again-btn:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 212, 255, 0.5);
+  filter: brightness(1.1);
+}
+
+/* ဖုန်းမှာ နှိပ်လိုက်ရင် ချိုင့်သွားအောင် */
+.try-again-btn:active {
+  transform: scale(0.95);
+}
+
+/* --- ဖုန်းအတွက် သီးသန့်ပြန်ညှိချက် --- */
+@media (max-width: 480px) {
+  .try-again-btn {
+    width: 90%; /* ဖုန်းမှာဆို ဘေးအပြည့်နီးပါး ယူမယ် */
+    padding: 15px;
+    font-size: 1.1rem;
+  }
+}
