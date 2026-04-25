@@ -1,7 +1,7 @@
 /* --- ၁။ အရောင်နဲ့ အခြေခံ Settings --- */
 :root {
-  --marine-blue: #001d3d; /* ပင်လယ်နက်ပိုင်းအရောင် */
-  --neon-cyan: #00d4ff; /* သင်္ဘော Dashboard က မီးရောင် */
+  --marine-blue: #001d3d;
+  --neon-cyan: #00d4ff;
   --glass-white: rgba(255, 255, 255, 0.08);
   --text-pure: #ffffff;
   --border-light: rgba(255, 255, 255, 0.15);
@@ -14,8 +14,7 @@
 }
 
 body {
-  /* ၂။ သင်္ဘောနောက်ခံပုံ (Marine Background) */
-  /* ပုံအပေါ်မှာ စာဖတ်ရလွယ်အောင် အပြာရင့်ရောင် လွှာလေး အုပ်ထားပါတယ် */
+  
   background:
     linear-gradient(rgba(0, 29, 61, 0.8), rgba(0, 29, 61, 0.8)),
     url("imge.webp");
@@ -50,7 +49,7 @@ body {
   height: 80px;
   background: var(--glass-white);
   border: 1.5px solid var(--neon-cyan);
-  border-radius: 18px; /* App Icon လို ဝိုင်းဝိုင်းလေး */
+  border-radius: 18px; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -74,7 +73,7 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-/* --- ၄။ Quiz Card (မှန်ကြည် Box လေးများ) --- */
+/* --- ၄။ Quiz Card  */
 .card {
   background: var(--glass-white);
   border: 1px solid var(--border-light);
@@ -91,8 +90,7 @@ body {
   border-color: var(--neon-cyan);
   box-shadow: 0 15px 40px rgba(0, 212, 255, 0.2);
 }
-/* မေးခွန်းစာသားကို ကြီးစေဖို့ */
-/* --- စာရိုက်ဖြေရတဲ့ Input Box ကို ပြင်တာပါ --- */
+
 input[type="text"],
 textarea {
   width: 100%;
@@ -101,27 +99,27 @@ textarea {
     255,
     255,
     0.1
-  ); /* နည်းနည်း ပိုလင်းအောင် background ကို မြှင့်လိုက်တယ် */
+  ); 
   border: 1.5px solid rgba(0, 212, 255, 0.4);
   border-radius: 15px;
-  padding: 22px; /* Box ကို ပိုကျယ်လာအောင် လုပ်တာပါ */
-  color: #ffffff; /* ရိုက်လိုက်တဲ့ စာသားအရောင် */
+  padding: 22px; 
+  color: #ffffff;
 
-  font-size: 1.3rem; /* စာလုံးကို တော်တော်လေး ကြီးလိုက်ပါပြီ */
+  font-size: 1.3rem; 
   font-weight: 500;
   outline: none;
   margin-top: 15px;
   transition: 0.3s;
 }
 
-/* "Type answer here..." ဆိုတဲ့ စာသားလေးကို ကြီးအောင်ပြင်တာပါ */
+
 input[type="text"]::placeholder,
 textarea::placeholder {
-  color: rgba(255, 255, 255, 0.5); /* စာသားဖျော့ဖျော့လေး */
-  font-size: 1rem; /* Placeholder စာလုံးကို ကြီးလိုက်တာပါ */
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1rem; 
 }
 
-/* Box ထဲမှာ စာရိုက်နေတဲ့အချိန် (Focus ဖြစ်ချိန်) မီးလင်းလာအောင် */
+
 input[type="text"]:focus {
   background: rgba(255, 255, 255, 0.15);
   border-color: #00d4ff;
@@ -165,7 +163,7 @@ input[type="text"]:focus {
   color: #fff;
   background: linear-gradient(135deg, #00d4ff, #0055ff);
   border: none;
-  border-radius: 100px; /* လုံးဝဝိုင်းစက်နေတဲ့ ပုံစံ */
+  border-radius: 100px; 
   cursor: pointer;
   text-transform: uppercase;
   letter-spacing: 3px;
@@ -331,14 +329,14 @@ textarea {
   text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
 }
 
-/* --- ၂။ Try Again ခလုတ် (Big & Neon Version) --- */
+
 .nav-btn {
   display: block;
   width: 100%;
-  max-width: 320px; /* Laptop မှာ အရမ်းကြီးမသွားအောင် */
+  max-width: 320px; 
   margin: 20px auto;
 
-  /* ခလုတ်ကို ဖောင်းဖောင်းကြီးနဲ့ Sexy ကျစေမယ့် padding */
+ 
   padding: 20px 40px;
   font-size: 1.3rem;
   font-weight: 800;
@@ -350,31 +348,31 @@ textarea {
   background: linear-gradient(135deg, #00d4ff, #0055ff);
 
   border: none;
-  border-radius: 100px; /* လုံးဝဝိုင်းစက်နေတဲ့ ဆေးတောင့်ပုံစံ */
+  border-radius: 100px;
 
   cursor: pointer;
   box-shadow: 0 10px 30px rgba(0, 85, 255, 0.4);
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
-  /* ဖုန်းမှာ နှိပ်ရတာ ပိုကောင်းအောင် */
+
   outline: none;
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Mouse တင်လိုက်တဲ့အခါ (Hover) */
+
 .nav-btn:hover {
   transform: translateY(-8px) scale(1.05);
   box-shadow: 0 20px 40px rgba(0, 212, 255, 0.6);
   letter-spacing: 5px; /* စာသားလေး ကျယ်သွားရင် ပိုလန်းတယ် */
 }
 
-/* လက်နဲ့နှိပ်လိုက်တဲ့အခါ (Active) */
+
 .nav-btn:active {
   transform: translateY(2px) scale(0.96);
   box-shadow: 0 5px 15px rgba(0, 85, 255, 0.4);
 }
 
-/* --- 📱 ဖုန်းအတွက် Responsive ပြင်ဆင်ချက် --- */
+
 @media (max-width: 480px) {
   .final-score-area {
     padding: 30px 15px;
@@ -396,7 +394,7 @@ textarea {
   }
 }
 
-/* ပေါ်လာတဲ့အခါ Animation */
+
 @keyframes slideUp {
   from {
     opacity: 0;
@@ -455,29 +453,71 @@ textarea {
   background: linear-gradient(135deg, #00d4ff, #0055ff);
 
   border: none;
-  border-radius: 50px; /* Sexy ဝိုင်းဝိုင်းလေး */
+  border-radius: 50px; 
   cursor: pointer;
   box-shadow: 0 10px 20px rgba(0, 85, 255, 0.3);
   transition: all 0.3s ease;
 }
 
-/* Mouse တင်လိုက်ရင် ကြွလာအောင် */
+
 .try-again-btn:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 30px rgba(0, 212, 255, 0.5);
   filter: brightness(1.1);
 }
 
-/* ဖုန်းမှာ နှိပ်လိုက်ရင် ချိုင့်သွားအောင် */
+
 .try-again-btn:active {
   transform: scale(0.95);
 }
 
-/* --- ဖုန်းအတွက် သီးသန့်ပြန်ညှိချက် --- */
+
 @media (max-width: 480px) {
   .try-again-btn {
-    width: 90%; /* ဖုန်းမှာဆို ဘေးအပြည့်နီးပါး ယူမယ် */
+    width: 90%; 
     padding: 15px;
     font-size: 1.1rem;
+  }
+}
+/* --- Timer Floating Style --- */
+.timer-box {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  padding: 15px 25px;
+  border-radius: 50px;
+  border: 2px solid var(--primary-blue);
+  color: var(--primary-blue);
+  font-weight: 800;
+  font-size: 1.2rem;
+  z-index: 1000;
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.timer-box i {
+  font-size: 1.4rem;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+
+
+@media (max-width: 600px) {
+  .timer-box {
+    top: auto;
+    bottom: 20px;
+    right: 50%;
+    transform: translateX(50%);
+    font-size: 1rem;
+    padding: 10px 20px;
   }
 }
