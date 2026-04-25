@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <div class="timer-box" id="timer-container">
+  <i class="fas fa-clock"></i> <span id="time-display">02:00:00</span>
+</div>
     <div class="container">
       <header class="main-header">
         <div class="logo-area">
@@ -354,6 +357,42 @@
         });
         document.getElementById("short-container").innerHTML = h3;
       }
+      // --- Timer Logic ---
+let totalSeconds = 2 * 60 * 60; 
+
+function startTimer() {
+  const display = document.getElementById("time-display");
+  
+  const timerInterval = setInterval(() => {
+    let hours = Math.floor(totalSeconds / 3600);
+    let minutes = Math.floor((totalSeconds % 3600) / 60);
+    let seconds = totalSeconds % 60;
+
+    
+    display.innerText = 
+      `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+    if (totalSeconds <= 0) {
+      clearInterval(timerInterval);
+      alert;
+      calculateResult();
+    } else {
+      totalSeconds--;
+    }
+
+    
+    if (totalSeconds < 300) {
+      document.getElementById("timer-container").style.color = "#ff4444";
+      document.getElementById("timer-container").style.borderColor = "#ff4444";
+    }
+  }, 1000);
+}
+
+
+window.onload = function() {
+  init();
+  startTimer();
+};
 
       // ၃။ အမှတ်တွက်ခြင်း Logic
       function calculateResult() {
@@ -414,11 +453,10 @@
         });
       }
       function resetQuiz() {
-        // ၁။ စာမျက်နှာကို အပေါ်ဆုံးရောက်အောင် အရင်ပို့မယ်
+        
         window.scrollTo({ top: 0, behavior: "smooth" });
 
-        // ၂။ ပြီးရင် စာမျက်နှာကို အသစ်ပြန်ဖြစ်အောင် (Reload) လုပ်မယ်
-        // ခဏစောင့်ပြီးမှ Reload လုပ်တာက ပိုပြီး Smooth ဖြစ်ပါတယ်
+     
         setTimeout(() => {
           window.location.reload();
         }, 500);
